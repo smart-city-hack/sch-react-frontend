@@ -26,7 +26,12 @@ During the hackathon, the app is deployed in the following url:
 
 https://sch-react-frontend.herokuapp.com/
 
-To deploy on heroku, push into the heroku remote like so: 
+To deploy on heroku, first add heroku as a new remote:
+
+```bash
+git remote add heroku https://git.heroku.com/sch-react-frontend.git
+```
+Assuming your ssh keys have already been added to the heroku settings, you can now push to the heroku remote to deploy:
 
 ```bash
 git push heroku main
