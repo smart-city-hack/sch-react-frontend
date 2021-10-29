@@ -9,18 +9,26 @@ const serverApi = axios.create({
 
 export const postUpdate = () => {
   serverApi
-    .post("/user/state?id=69", {
-      traffic_light: {
-        visible: true,
-        multiple: true,
-        non_pedestrian: true,
-        red: true,
+    .post(
+      "/user/state",
+      {
+        traffic_light: {
+          visible: true,
+          multiple: true,
+          non_pedestrian: true,
+          red: true,
+        },
+        position: {
+          latitude: "40:7:22.8N",
+          longitude: " 74:7:22.8W",
+        },
       },
-      position: {
-        latitude: "40:7:22.8N",
-        longitude: " 74:7:22.8W",
-      },
-    })
+      {
+        params: {
+          id: 69,
+        },
+      }
+    )
     .then((res) => {
       console.log("REQUEST SUCCESS", res);
       console.log(res.data);
