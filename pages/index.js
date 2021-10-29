@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
+import { postUpdate } from "../utils/serverApi";
 
 export default function Home() {
   const useStyles = makeStyles((theme) => ({
@@ -128,6 +129,7 @@ export default function Home() {
         }
       }
     }
+    postUpdate();
 
     setTimeout(() => predictionFunction(), 500);
   }
