@@ -43,9 +43,9 @@ export default function Home() {
       loadModel(model, setModel);
     });
 
-    // setupGeolocate((position) => {
-    //   postLocation(position.coords);
-    // });
+    setupGeolocate((position) => {
+      postLocation(position.coords);
+    });
   }, []);
 
   const handleStartButtonClick = async () => {
