@@ -67,6 +67,9 @@ export default function Home() {
         setModel(model);
         loaded = true;
         console.info("setloadedModel");
+        console.info(model);
+        //const zeros = tf.zeros([1, 320, 320, 3]);
+        //console.log(model.predict(zeros));
       } catch (err) {
         console.error(err);
         console.error("failed load model");
