@@ -18,6 +18,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { postLocation, postUpdate } from "../utils/serverApi";
 
+import {loadGraphModel} from '@tensorflow/tfjs-converter';
+
+const MODEL_URL = '/model_test/model.json';
+
+
 import { geolocate, setupGeolocate, success } from "../utils/locationService";
 
 export default function Home() {
@@ -57,7 +62,8 @@ export default function Home() {
     while (!model && !loaded && tryCounter < 10) {
       tryCounter++;
       try {
-        const model = await cocoSsd.load();
+        const model = await loadGraphModel(MODEL_URL);
+        //const model = await cocoSsd.load();
         setModel(model);
         loaded = true;
         console.info("setloadedModel");
