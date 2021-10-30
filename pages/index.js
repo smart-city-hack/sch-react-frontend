@@ -16,7 +16,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import { postUpdate } from "../utils/serverApi";
+import { postLocation, postUpdate } from "../utils/serverApi";
+
+import { geolocate, setupGeolocate, success } from "../utils/locationService";
 
 export default function Home() {
   const useStyles = makeStyles((theme) => ({
@@ -204,7 +206,8 @@ export default function Home() {
                   width: "50%",
                   maxWidth: "250px",
                 }}
-                onClick={() => {
+                onClick={async () => {
+                  setupGeolocate(position => { postLocation(position.coords) });
                   predictionFunction();
                 }}
               >
