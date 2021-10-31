@@ -53,6 +53,11 @@ function renderCanvas(predictions, canvas, video) {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, video.videoWidth, video.videoHeight);
 
+    //console.info("canvas width " + canvas.width);
+    //console.info("canvas height " + canvas.height);
+    //console.info("video width " + video.videoWidth);
+    //console.info("video height " + video.videoHeight);
+
     if (predictions.length > 0) {
         // setPredictionData(predictions);
         console.log(predictions);
@@ -62,15 +67,20 @@ function renderCanvas(predictions, canvas, video) {
             if (predictions[n].score > threshold) {
                 let bboxLeft = predictions[n].bbox[0];
                 let bboxTop = predictions[n].bbox[1];
-                let bboxWidth = predictions[n].bbox[2] - bboxLeft; //dunno why I need to do this
-                let bboxHeight = predictions[n].bbox[3] - bboxTop; //dunno why I need to do this
+                let bboxWidth = predictions[n].bbox[2];
+                let bboxHeight = predictions[n].bbox[3];
+                bboxLeft *= canvas.width / video.videoWidth;
+                bboxTop *= canvas.height / video.videoHeight;
+                bboxWidth *= canvas.width / video.videoWidth;
+                bboxHeight *= canvas.height / video.videoHeight;
 
-                console.log("bboxLeft: " + bboxLeft);
-                console.log("bboxTop: " + bboxTop);
 
-                console.log("bboxWidth: " + bboxWidth);
+                //TODO normalization
 
-                console.log("bboxHeight: " + bboxHeight);
+                //console.log("bboxLeft: " + bboxLeft);
+                //console.log("bboxTop: " + bboxTop);
+                //console.log("bboxWidth: " + bboxWidth);
+                //console.log("bboxHeight: " + bboxHeight);
 
                 ctx.beginPath();
                 ctx.font = "28px Arial";
